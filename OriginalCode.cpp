@@ -1,7 +1,22 @@
 #include <algorithm>
 #include <iostream>
 
+class Character {
+public:
+    Character(int x, int y) : x_(x), y_(y) {}
 
+    void move(int dx, int dy, int width, int height) {
+        x_ = std::clamp(x_ + dx, 0, width - 1);
+        y_ = std::clamp(y_ + dy, 0, height - 1);
+    }
+
+    int x() const { return x_; }
+    int y() const { return y_; }
+
+private:
+    int x_;
+    int y_;
+};
 
 class World {
 public:
